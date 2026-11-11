@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10141c">
+  <title>TME — Devis & Factures</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section id="auth-screen" class="auth-screen" hidden>
+    <div class="auth-card">
+      <div class="brand-mark auth-mark">TME</div>
+      <div class="eyebrow">ESPACE PROFESSIONNEL</div>
+      <h1>Connexion TME</h1>
+      <p class="muted">Connecte-toi pour retrouver tes devis, factures, clients et prestations sur tes appareils.</p>
+      <form id="auth-form">
+        <div class="field"><label>Adresse email</label><input id="auth-email" type="email" autocomplete="email" required placeholder="toi@exemple.fr"></div>
+        <div class="field"><label>Mot de passe</label><input id="auth-password" type="password" autocomplete="current-password" minlength="8" required placeholder="8 caractères minimum"></div>
+        <button class="primary" id="auth-submit" type="submit">Se connecter</button>
+        <button class="secondary" id="auth-signup" type="button">Créer mon compte</button>
+      </form>
+      <div id="auth-message" class="auth-message"></div>
+      <p class="muted-line">La connexion cloud doit être configurée avec ton propre projet Supabase. Consulte INSTALLATION-V3.md.</p>
+    </div>
+  </section>
+  <div class="app-shell" id="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">TME</div><div><strong>TME</strong><small>DEVIS & FACTURES</small></div></div>
+      <nav>
+        <button class="nav-btn active" data-page="dashboard">▦ <span>Tableau de bord</span></button>
+        <button class="nav-btn" data-page="quotes">▤ <span>Devis</span></button>
+        <button class="nav-btn" data-page="invoices">▧ <span>Factures</span></button>
+        <button class="nav-btn" data-page="services">🔧 <span>Prestations</span></button>
+        <button class="nav-btn" data-page="clients">♙ <span>Clients</span></button>
+        <button class="nav-btn" data-page="settings">⚙ <span>Paramètres</span></button>
+      </nav>
+      <div class="sidebar-foot">TME • Entretien & mécanique automobile</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><div class="eyebrow">GESTION AUTOMOBILE</div><h1 id="page-title">Tableau de bord</h1></div>
+        <div class="top-actions"><span class="status-dot"></span><span id="cloud-status">Connexion cloud en attente</span><button class="secondary" id="logout-button">Déconnexion</button><button class="primary" id="quick-quote">＋ Nouveau devis</button></div>
+      </header>
+      <section id="content" class="content"></section>
+    </main>
+  </div>
+
+  <dialog id="editor" class="modal">
+    <form method="dialog" id="editor-form">
+      <div class="modal-head"><div><div class="eyebrow" id="modal-eyebrow">DOCUMENT</div><h2 id="modal-title">Nouveau document</h2></div><button class="icon-btn" value="cancel" aria-label="Fermer">✕</button></div>
+      <div id="modal-body"></div>
+      <div class="modal-actions"><button class="secondary" value="cancel">Annuler</button><button class="primary" id="save-editor" value="default">Enregistrer</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
